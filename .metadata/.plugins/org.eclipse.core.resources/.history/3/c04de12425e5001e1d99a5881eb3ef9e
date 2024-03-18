@@ -1,0 +1,71 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="org.apache.catalina.connector.Response"%>
+<%@page import="java.io.PrintWriter"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<%! 
+Connection con = null;
+ResultSet rs = null;
+PreparedStatement ps = null;
+String qur = null;
+PrintWriter out;
+public void connectdb(PrintWriter out){
+	try{
+		Class.forName("com.mysql.jdbc.Driver");
+		con = DriverManager.getConnection("jdbc:mysql://localhost/cie2jsp","root","Generalhacker1915");
+		out.println("connected to db");
+	}catch(Exception e){
+		out.print(e);
+	}
+}
+
+public void insertUser(PrintWriter out,String email,String pass){
+	try{
+		qur = "insert into users values(null,?,?)";
+		ps = con.prepareStatement(qur);
+		ps.setString(1, email);
+		ps.setString(2, pass);
+		int i = ps.executeUpdate();
+		if(i>0){
+			out.println("User Created");
+		}
+	}catch(Exception e){
+		out.print(e);
+	}
+}
+
+public void chkuser(PrintWriter out,String email,String pass){
+	try{
+		qur = "select email, pass from users where email = '"+email+"' and pass = '"+pass+"';";
+		
+	}catch(Exception e){
+		out.println(e);
+	}
+}
+%>
+
+
+
+
+
+
+
+
+
+
+
+

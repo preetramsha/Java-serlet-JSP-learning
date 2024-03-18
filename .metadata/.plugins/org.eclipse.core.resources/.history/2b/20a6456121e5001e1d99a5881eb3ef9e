@@ -1,0 +1,22 @@
+import java.io.PrintWriter;
+import java.sql.*;
+
+public class config{
+	Connection con = null;
+	ResultSet rs = null;
+	String sql = null;
+	PreparedStatement ps = null;
+	PrintWriter out;
+	
+	public config(PrintWriter out) {
+		this.out = out;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost/cie2jsp/","root","Generalhacker1915");
+			out.println("Connected to database successfully.");
+		} catch (Exception e) {
+			out.println(e);
+		}
+		
+	}
+}

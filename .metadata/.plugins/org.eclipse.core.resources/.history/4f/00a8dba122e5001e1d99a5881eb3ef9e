@@ -1,0 +1,47 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="org.apache.catalina.connector.Response"%>
+<%@page import="java.io.PrintWriter"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<%! 
+Connection con = null;
+ResultSet rs = null;
+PreparedStatement ps = null;
+String qur = null;
+
+public void connectdb(PrintWriter out){
+	try{
+		Class.forName("com.mysql.jdbc.Driver");
+		con = DriverManager.getConnection("jdbc:mysql://localhost/cie2jsp","root","Generalhacker1915");
+		out.println("connected to db");
+	}catch(Exception e){
+		out.print(e);
+	}
+}
+%>
+
+
+
+
+
+
+
+
+
+
+
+
